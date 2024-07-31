@@ -20,8 +20,12 @@ async def upload_image(
         print(f"Start Time: {start_time}")
         print(f"End Time: {end_time}")
         print(f"Folder Name: {folder_name}")
-        image_folder = os.path.join('.', folder_name)
+        
+        # Ensure the folder path includes 'snapshots'
+        #base_folder = 'snapshots'
+        image_folder = os.path.join('', folder_name)
         os.makedirs(image_folder, exist_ok=True)
+        
         image_path = os.path.join(image_folder, f'image_{camera_id}.jpeg')
         with open(image_path, 'wb') as f:
             content = await image.read()

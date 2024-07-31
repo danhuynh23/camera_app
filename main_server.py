@@ -28,12 +28,14 @@ async def capture_request(data):
     folder_name = create_timestamped_folder()
     await sio.emit('capture_request', {'message': 'Please capture and send data', 'folder_name': folder_name})
 
-# Create a directory to store images with a timestamped folder
+# Create a directory to store images with a timestamped folder inside 'snapshots'
 def create_timestamped_folder():
-    timestamp = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+    base_folder = 'snapshots'
+    timestamp = datetime.now().strftime('%Y-%m-%d   %H-%M-%S')
     folder_name = f'images_{timestamp}'
-    os.makedirs(folder_name, exist_ok=True)
-    return folder_name
+    full_path = os.path.join(base_folder, folder_name)
+    os.makedirs(full_path, exist_ok=True)
+    return full_path
 
 # HTTP route to trigger capture request
 @app.post('/send_capture_request')
