@@ -31,7 +31,7 @@ async def capture_request(data):
 # Create a directory to store images with a timestamped folder inside 'snapshots'
 def create_timestamped_folder():
     base_folder = 'snapshots'
-    timestamp = datetime.now().strftime('%Y-%m-%d   %H-%M-%S')
+    timestamp = datetime.now().strftime('%Y-%m-%d___%H-%M-%S')
     folder_name = f'images_{timestamp}'
     full_path = os.path.join(base_folder, folder_name)
     os.makedirs(full_path, exist_ok=True)
